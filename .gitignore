@@ -176,5 +176,4 @@ dist
 
 *.bun-build
 loltestme.yaml
-build
 .mcp.json

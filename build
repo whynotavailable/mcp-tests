@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+bun build index.ts --compile --outfile ~/bin/mcp-testing
+find . -name "*.bun-build" | xargs rm
