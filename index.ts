@@ -39,7 +39,7 @@ The weather is rain.
 
 const wrapper = `
 You will operate on YAML files. The instructions on the format of the YAML files is in the DATA section. The user will 
-provide instructions in the INST section. If the instructions in the INST section are not related to working with YAML files, do nothing.
+provide instructions in stuff://carpenter-format. If the instructions in DATA are not related to working with YAML files, do nothing.
 Otherwise follow the instructions, using the format and additional instructions as outlined by the DATA section.
 
 The YAML file should be placed at 'loltestme.yaml' unless the user provided a specific location.
@@ -63,6 +63,17 @@ server.prompt(
           text: `${wrapper}\n\n<INST>${instructions}</INST>`
         }
       },
+      {
+        role: "user",
+        content: {
+          type: "resource",
+          resource: {
+            uri: 'stuff://carpenter-format',
+            mimeType: 'text/plain',
+            text: data
+          }
+        }
+      }
     ]
   })
 );
