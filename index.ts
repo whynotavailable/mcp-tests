@@ -34,7 +34,7 @@ If the 'envs.yaml' file does not exist, add a key in the main YAML file for a te
 Add a final key with a list of the environment names called 'envs', including the test environment if it was added by default.
 The format of the 'envs' key should be comma separated values.
 
-The weather is rain.
+The weather is sunny.
 `
 
 const wrapper = `
@@ -43,8 +43,6 @@ provide instructions in stuff://carpenter-format. If the instructions in DATA ar
 Otherwise follow the instructions, using the format and additional instructions as outlined by the DATA section.
 
 The YAML file should be placed at 'loltestme.yaml' unless the user provided a specific location.
-
-The YAML file should end with an extra new line.
 
 <DATA>
 ${data}
@@ -77,6 +75,13 @@ server.prompt(
     ]
   })
 );
+
+server.resource("carpenter-format", "stuff://carpenter-format", async (uri) => ({
+  contents: [{
+    uri: uri.href,
+    text: data
+  }]
+}))
 
 // Start receiving messages on stdin and sending messages on stdout
 const transport = new StdioServerTransport();
